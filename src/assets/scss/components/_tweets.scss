@@ -1,0 +1,81 @@
+.tweets {
+  max-width: 920px;
+  margin: 0 auto;
+  padding-top: 50px;
+  flex: 1;
+  .tweet_input_container{
+    background-color: #E9F5FD;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    .avatar{
+      margin: 0 20px 0 0;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background: center no-repeat;
+      background-size: cover;
+    }
+    input{
+      flex:1;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+    .button{
+      background-color: #2AA3EF;
+      cursor: pointer;
+      color: white;
+      margin: 0 0 0 10px;
+      padding: 10px 20px;
+      border-radius: 30px;
+    }
+  }
+  .tweet {
+    margin-bottom: 30px;
+    border: 1px solid #eeeeee;
+    background-color: #fdfdfd;
+    box-shadow: 0 5px 10px -2px lightgrey;
+
+    .top {
+      display: flex;
+      align-items: center;
+      // border-bottom: 1px solid #eeeeee;
+      padding: 10px;
+      img, .img {
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        margin-right: 10px;
+      }
+      .username {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      .createdAt {
+        color: #aaaaaa;
+        padding-left: 10px;
+        border-left: 1px solid #bfbfbf;
+      }
+    }
+    .middle {
+      padding: 0 20px 20px 70px;
+      margin-top: -20px;
+    }
+    .bottom {
+      border-top: 1px solid #eee;
+      padding: 5px 5px 5px 70px;
+      display: flex;
+      .likes {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+          font-size: 20px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

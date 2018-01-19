@@ -1,0 +1,12 @@
+@import 'profile_top';
+
+.profile_container {
+  background-color: #E6ECF0;
+  .profile_wrapper {
+    max-width: 1190px;
+    margin: 0 auto;
+    padding-top: 10px;
+    display: flex;
+    @import "profile_sidebar";
+  }
+}

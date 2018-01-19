@@ -1,0 +1,22 @@
+.header {
+  box-shadow: 0 -10px 5px 10px grey;
+  background-color: white;
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1190px;
+    margin: 0 auto;
+    & > div {
+      display: flex;
+      flex: 1;
+      font-size: 0.8rem;
+      i {
+        font-size: 1.3rem;
+      }
+    }
+    @import "header_actions";
+    @import "header_logo";
+    @import "header_profile";
+  }
+}

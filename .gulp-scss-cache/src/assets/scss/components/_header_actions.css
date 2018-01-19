@@ -1,0 +1,2 @@
+.actions{color:grey}.actions>a{display:flex;align-items:center;margin:0 10px 0 0;padding:10px;cursor:pointer;transition:color 200ms}.actions>a>div{padding:0 0 0 5px;font-weight:500}.actions>a:hover{color:#2AA3EF}.actions>.active{color:#2AA3EF;border-top:3px solid transparent;border-bottom:3px solid #2AA3EF}.actions>.active:hover{color:#1f7ab3}
+/*# sourceMappingURL=_header_actions.css.map */
