@@ -1,17 +1,26 @@
 import React from 'react'
-import moment from 'moment';
 import 'moment/locale/fr';
 import * as Spinner from 'react-spinkit'
 import isFetchingTweets from "../store/selectors/is_fetching_tweets";
 import getAllTweets from "../store/selectors/get_all_tweets";
 import {bindActionCreators} from "redux";
-import {fetchTweets} from "../store/actions/firebase";
+import {fetchTweets, sendTweet} from "../store/actions/firebase";
 import {connect} from "react-redux";
 import faker from 'faker';
+import Tweet from '../components/tweet.js'
 
-class Tweets extends React.Component {
+class Tweets extends React.PureComponent {
+	handleTweet() {
+		const {sendTweet} = this.props;
+		const tweet = this.tweetInput.value;
+		if (tweet) {
+			sendTweet(tweet, "NKiwv0KOGdbLNEHgm5tnLHddDZa2", "Test2")
+		}
+		this.tweetInput.value = ""
+	}
+	
 	componentDidMount() {
-		this.props.fetchTweets();
+		this.props.fetchTweets(this.props.uid);
 		this.sentence = [
 			"Quoi de neuf ?",
 			"Racontes nous ta journée",
@@ -23,48 +32,27 @@ class Tweets extends React.Component {
 		const {tweets, isFetchingTweets} = this.props;
 		
 		return <div className={`tweets `}>
-			<div className="tweet_input_container">
+			<form className="tweet_input_container"
+			      onSubmit={(e) => {
+				      e.preventDefault();
+				      this.handleTweet()
+			      }}>
 				<div className="avatar"
 				     style={{backgroundImage: `url(${faker.image.avatar()})`}}/>
 				<input type="text"
+				       ref={ref => this.tweetInput = ref}
 				       placeholder={this.sentence}/>
-				<div className="button">Tweeter</div>
-			</div>
+				<div className="button"
+				     onClick={() => this.handleTweet()}>Tweeter
+				</div>
+			</form>
 			{isFetchingTweets && <Spinner fadeIn={"none"}
 			                              name={"circle"}/>}
-			{!isFetchingTweets && tweets !== undefined && tweets.map(tweet => {
-				const current_user = {
-					picture: {
-						large: faker.image.avatar()
-					},
-					login: {
-						username: faker.internet.userName()
-					}
-				};
-				const picture = current_user.picture.large;
-				const username = tweet.username;
-				const date = moment().to(tweet.createdAt);
-				const {text, likes = {}} = tweet;
-				
-				return <div key={tweet.id}
-				            className="tweet animated fadeIn">
-					<div className="top">
-						<img src={picture}
-						     alt={"something"}/>
-						<div className="username">{username}</div>
-						<div className="createdAt">{date}</div>
-					</div>
-					<div className="middle">
-						{text}
-					</div>
-					<div className="bottom">
-						<div className="likes">
-							<i className="fa fa-heart-o"/>
-							<div>{Object.keys(likes).length}</div>
-						</div>
-					</div>
-				</div>
-			})}
+			{!isFetchingTweets
+			&& tweets !== undefined
+			&& tweets
+				.map(tweet => <Tweet tweet={tweet}
+				                     key={tweet.id}/>)}
 		</div>
 	}
 }
@@ -75,7 +63,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	fetchTweets
+	fetchTweets,
+	sendTweet
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tweets)
