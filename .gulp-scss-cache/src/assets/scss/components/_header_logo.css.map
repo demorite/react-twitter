@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,KAAM,CACJ,OAAO,CAAE,IAAI,CACb,MAAM,CAAE,OAAO,CACf,eAAe,CAAE,MAAM,CACvB,KAAK,CAAE,OAAO,CACd,UAAU,CAAE,SAAS,CACrB,OAAE,CACA,SAAS,CAAE,MAAM,CAEnB,WAAQ,CACN,KAAK,CAAE,OAAmB",
-"sources": ["../../../../../src/assets/scss/components/_header_logo.scss"],
-"names": [],
-"file": "_header_logo.css"
-}
